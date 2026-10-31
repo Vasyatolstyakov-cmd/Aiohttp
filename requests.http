@@ -1,0 +1,39 @@
+### Информация об API
+GET http://127.0.0.1:8080/
+
+### Создать объявление
+POST http://127.0.0.1:8080/advertisements
+Content-Type: application/json
+
+{
+  "title": "Продам велосипед",
+  "description": "Городской велосипед в хорошем состоянии",
+  "owner": "alexander"
+}
+
+### Получить список объявлений
+GET http://127.0.0.1:8080/advertisements
+
+### Получить объявление №1
+GET http://127.0.0.1:8080/advertisements/1
+
+### Частично изменить объявление №1
+PATCH http://127.0.0.1:8080/advertisements/1
+Content-Type: application/json
+
+{
+  "title": "Велосипед продан"
+}
+
+### Полностью изменить объявление №1
+PUT http://127.0.0.1:8080/advertisements/1
+Content-Type: application/json
+
+{
+  "title": "Продам самокат",
+  "description": "Самокат в отличном состоянии",
+  "owner": "alexander"
+}
+
+### Удалить объявление №1
+DELETE http://127.0.0.1:8080/advertisements/1
