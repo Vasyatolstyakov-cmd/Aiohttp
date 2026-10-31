@@ -6,7 +6,8 @@ from app import create_app
 
 @pytest_asyncio.fixture()
 async def client(aiohttp_client, tmp_path):
-    database_url = f"sqlite+aiosqlite:///{tmp_path / 'test.db'}"
+    database_path = tmp_path / "test.db"
+    database_url = f"sqlite+aiosqlite:///{database_path}"
     return await aiohttp_client(create_app(database_url))
 
 
@@ -50,7 +51,11 @@ async def test_advertisement_crud(client):
 async def test_put_replaces_all_editable_fields(client):
     await client.post(
         "/advertisements",
-        json={"title": "Старый", "description": "Текст", "owner": "owner"},
+        json={
+            "title": "Старый",
+            "description": "Текст",
+            "owner": "owner",
+        },
     )
 
     response = await client.put(
